@@ -16,8 +16,17 @@ function exibirReceitas() {
                 "1 colher de chá de essência de baunilha",
                 "1 xícara de leite",
             ],
-            imagem: "caminho-da-imagem/bolo-chocolate.jpg",
-            modoDeFazer: "Preparo do bolo de chocolate...",
+            imagem: "./img/chocolate.jpeg",
+            modoDeFazer:  [
+                "Pré-aqueça o forno a 180°C (350°F). Unte uma forma redonda de bolo com manteiga e farinha ou forre com papel manteiga.",
+                "Em uma tigela grande, peneire a farinha de trigo, o cacau em pó, o fermento em pó e o sal. Reserve.",
+                "Em outra tigela, bata a manteiga amolecida com o açúcar até obter uma mistura cremosa e homogênea.",
+                "Adicione os ovos, um de cada vez, batendo bem após cada adição. Acrescente a essência de baunilha e misture.",
+                "Adicione os ingredientes secos peneirados à mistura de manteiga e ovos, alternando com o leite. Comece e termine com os ingredientes secos, misturando bem após cada adição.",
+                "Despeje a massa na forma preparada e alise a superfície com uma espátula.",
+                "Asse no forno preaquecido por aproximadamente 40 a 50 minutos, ou até que um palito inserido no centro do bolo saia limpo.",
+                "Retire o bolo do forno e deixe esfriar na forma por alguns minutos antes de desenformar. Deixe esfriar completamente em uma grade antes de servir."
+            ],
         },
         {
             nome: "Bolo de Cenoura",
@@ -30,8 +39,16 @@ function exibirReceitas() {
                 "1 colher de sopa de fermento em pó",
                 "1 pitada de sal",
             ],
-            imagem: "caminho-da-imagem/bolo-cenoura.jpg",
-            modoDeFazer: "Preparo do bolo de cenoura...",
+            imagem: "./img/cenoura.jpeg",
+            modoDeFazer:  [
+                "Pré-aqueça o forno a 180°C (350°F). Unte uma forma retangular ou redonda com manteiga e farinha ou forre com papel manteiga.",
+                "Descasque as cenouras, corte-as em pedaços e coloque-as no liquidificador junto com os ovos e o óleo. Bata até obter uma mistura homogênea.",
+                "Em uma tigela grande, misture a farinha de trigo, o açúcar, o fermento em pó e a pitada de sal.",
+                "Despeje a mistura líquida do liquidificador sobre os ingredientes secos e mexa bem até obter uma massa homogênea.",
+                "Despeje a massa na forma preparada e alise a superfície com uma espátula.",
+                "Asse no forno preaquecido por cerca de 30 a 40 minutos, ou até que um palito inserido no centro do bolo saia limpo.",
+                "Retire o bolo do forno e deixe esfriar na forma por alguns minutos antes de desenformar. Deixe esfriar completamente em uma grade antes de servir."
+            ],
         },
         {
             nome: "Bolo de Fubá",
@@ -44,8 +61,16 @@ function exibirReceitas() {
                 "1 xícara de farinha de trigo",
                 "1 colher de sopa de fermento em pó",
             ],
-            imagem: "caminho-da-imagem/bolo-fuba.jpg",
-            modoDeFazer: "Preparo do bolo de fubá...",
+            imagem: "./img/fuba.jpeg",
+            modoDeFazer: [
+                "Pré-aqueça o forno a 180°C (350°F). Unte uma forma retangular ou redonda com manteiga e farinha ou forre com papel manteiga.",
+                "Em uma tigela, misture o fubá, a farinha de trigo e o fermento em pó. Reserve.",
+                "No liquidificador, adicione os ovos, o açúcar, o leite e o óleo. Bata bem até obter uma mistura homogênea.",
+                "Despeje a mistura líquida do liquidificador sobre os ingredientes secos e mexa bem até obter uma massa homogênea.",
+                "Despeje a massa na forma preparada e alise a superfície com uma espátula.",
+                "Asse no forno preaquecido por cerca de 40 a 50 minutos, ou até que um palito inserido no centro do bolo saia limpo.",
+                "Retire o bolo do forno e deixe esfriar na forma por alguns minutos antes de desenformar. Deixe esfriar completamente em uma grade antes de servir."
+            ],
         },
     ];
     const receitasDiv = document.getElementById("app");
@@ -57,12 +82,14 @@ function exibirReceitas() {
             <img src="${receita.imagem}" class="card-img-top" alt="${receita.nome}">
             <div class="card-body">
               <h5 class="card-title">${receita.nome}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Ingredientes:</h6>
+              <h6 class="card-subtitle mb-2 text-muted my-2">Ingredientes:</h6>
               <ul class="list-unstyled">
                 ${receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
               </ul>
               <p class="card-text">Modo de fazer:</p>
-              <p>${receita.modoDeFazer}</p>
+              <ol class="">
+                ${receita.modoDeFazer.map(fazer => `<li class="text-justify">${fazer}</li>`).join("")}
+              </ol>
             </div>
           </div>
         </div>`;
