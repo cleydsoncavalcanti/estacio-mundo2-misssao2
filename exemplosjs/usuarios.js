@@ -4,12 +4,12 @@
         data: {
             users: [],
         },
-        created() {
-            this.fetchUsers();
+        mounted() {
+            this.loadUsers();
         },
         methods: {
-            fetchUsers() {
-                console.log('funcao fetchUsers')
+            loadUsers() {
+                console.log('funcao loadUsers')
                 const apiUrl = 'https://reqres.in/api/users?per_page=10';
 
                 axios.get(apiUrl)
