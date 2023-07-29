@@ -1,5 +1,6 @@
 // Array que irá armazenar os números adicionados pelo usuário
-let numeros = [3, 2, 5, 8, 9, 7, 1, 0];
+let numeros = [];
+// let numeros = [3, 2, 5, 8, 9, 7, 1, 0];
 
 /**
  * Adiciona um número à lista de números.
