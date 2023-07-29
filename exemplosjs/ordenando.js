@@ -72,10 +72,7 @@ const ordenarLista = () => {
             selectionSort(numeros);
             break;
         case "quick_sort":
-            quickSort(numeros);
-            break;
-        case "particionamento":
-            particionamentoSort(numeros);
+            numeros = quickSort(numeros);
             break;
         default:
             alert("Método de ordenação inválido");
@@ -102,12 +99,19 @@ const swap = (arr, pos1, pos2) => {
 };
 
 /**
- * Implementação do método de ordenação Shuffle.
- * [Implementação necessária]
+ * Função shuffle, com o objetivo de embaralhar os elementos de um vetor.
+ * @param {Array} arr - O vetor a ser embaralhado.
+ * @param {number} numSwaps - A quantidade de trocas a serem realizadas.
  */
-const shuffleSort = (arr) => {
+const shuffleSort = (arr, numSwaps) => {
     console.log('função shuffleSort', arr);
-    // Implementação do método de ordenação Shuffle
+
+    const n = arr.length;
+    for (let i = 0; i < numSwaps; i++) {
+        const index1 = Math.floor(Math.random() * n);
+        const index2 = Math.floor(Math.random() * n);
+        swap(arr, index1, index2);
+    }
 };
 
 /**
@@ -134,36 +138,88 @@ const bubbleSort = (arr) => {
 const selectionSort = (arr) => {
     console.log('função selectionSort', arr);
     // Implementação do método de ordenação Selection Sort
+    const n = arr.length;
+
+    for (let i = 0; i < n - 1; i++) {
+        let minIndex = i;
+
+        // Find the index of the minimum element in the remaining unsorted array
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // Swap the found minimum element with the first element of the unsorted array
+        if (minIndex !== i) {
+            swap(arr, i, minIndex);
+        }
+    }
 };
 
 /**
- * Implementação do método de ordenação Quick Sort.
- * [Implementação necessária]
+ * Função quick_sort, para ordenar um vetor de inteiros com o algoritmo Quick Sort, recursivo.
+ * @param {Array} arr - O vetor de valores inteiros a ser ordenado.
+ * @param {number} start - A posição inicial do vetor a ser considerada para ordenação.
+ * @param {number} end - A posição final do vetor a ser considerada para ordenação.
  */
 const quickSort = (arr) => {
     console.log('função quickSort', arr);
-    // Implementação do método de ordenação Quick Sort
+
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const pivot = arr[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+    let retorno = [...quickSort(left), pivot, ...quickSort(right)];
+    console.log('retorno final', retorno)
+    return [...quickSort(left), pivot, ...quickSort(right)];
 };
 
 /**
- * Implementação do método de ordenação Particionamento.
- * [Implementação necessária]
+ * Helper function for Quick Sort to partition the array around a pivot element.
+ * @param {Array} arr - The array to be partitioned.
+ * @param {number} start - The start index of the subarray to be partitioned.
+ * @param {number} end - The end index of the subarray to be partitioned.
+ * @returns {number} - The index of the pivot element after partitioning.
  */
-const particionamentoSort = (arr) => {
-    console.log('função particionamentoSort', arr);
-    // Implementação do método de ordenação Particionamento
-};
+const partition = (arr, start, end) => {
+    // Choose the last element as the pivot
+    const pivot = arr[end];
 
+    // Initialize the index for elements smaller than the pivot
+    let partitionIndex = start;
+
+    // Loop through the subarray and move elements smaller than the pivot to the left
+    for (let i = start; i < end; i++) {
+        if (arr[i] < pivot) {
+            swap(arr, i, partitionIndex);
+            partitionIndex++;
+        }
+    }
+
+    // Move the pivot element to its correct position
+    swap(arr, partitionIndex, end);
+
+    return partitionIndex;
+};
 /**
  * Mistura aleatoriamente os elementos da lista de números (algoritmo Fisher-Yates).
  * Embaralha os números no array "numeros" trocando elementos aleatórios repetidamente.
  * Após embaralhar a lista, chama a função "atualizarLista()" para exibir a lista reorganizada.
  */
 const misturarLista = () => {
-    // console.log('funcao misturarLista',numeros)
-    for (let i = numeros.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [numeros[i], numeros[j]] = [numeros[j], numeros[i]];
-    }
+    const numSwaps = numeros.length * 2; // Adjust the number of swaps as desired
+    shuffleSort(numeros, numSwaps);
     atualizarLista();
 };
