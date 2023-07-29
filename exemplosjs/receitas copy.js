@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
     new Vue({
-        el: '#app',
+        el: '#pnlCatalogo',
         data: {
-            tasks: ['Tarefa 1', 'Tarefa 2', 'Tarefa 3'],
+            receitas: [
+                {
+                    nome: 'Bolo rolo',
+                    imagem: 'bolo_rolo.png',
+                    preparo: 'fazer isso assim...',
+                    ingredientes: [
+                        'alface', 'cenoura', 'mamão'
+                    ]
+                }
+
+            ],
             newTask: ''
         },
         methods: {
