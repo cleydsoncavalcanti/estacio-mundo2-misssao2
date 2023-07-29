@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="./ordenando.js"></script>
+</head>
+
+<body>
+    <div>
+        <div id="app">
+            <h1>Minha Lista de Tarefas</h1>
+
+            <!-- Lista de tarefas -->
+            <ul>
+                <li v-for="(task, index) in tasks" :key="index">
+                    {{ task }}
+                </li>
+            </ul>
+
+            <!-- Formulário para adicionar novas tarefas -->
+            <form @submit.prevent="addTask">
+                <input type="text" v-model="newTask" placeholder="Digite uma nova tarefa">
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
