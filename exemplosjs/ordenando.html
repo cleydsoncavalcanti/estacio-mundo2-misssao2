@@ -3,30 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ordenando Valores</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="./ordenando.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body>
-    <div>
-        <div id="app">
-            <h1>Minha Lista de Tarefas</h1>
-
-            <!-- Lista de tarefas -->
-            <ul>
-                <li v-for="(task, index) in tasks" :key="index">
-                    {{ task }}
-                </li>
-            </ul>
-
-            <!-- Formulário para adicionar novas tarefas -->
-            <form @submit.prevent="addTask">
-                <input type="text" v-model="newTask" placeholder="Digite uma nova tarefa">
-                <button type="submit">Adicionar</button>
-            </form>
+    <div class="container mt-5">
+        <h1>Ordenando Valores</h1>
+        <div class="form-group">
+            <label for="numInput">Valor:</label>
+            <input type="number" class="form-control" id="numInput" onkeypress="adicionarNumeroOnEnter(event)">
         </div>
+        <button class="btn btn-primary" onclick="adicionarNumero()">Adicionar à lista</button>
+        <button class="btn btn-primary" onclick="atualizarLista()">Atualiar Lista</button>
+
+        <div class="form-group mt-4">
+            <label for="sortMethod">Escolha o método de ordenação:</label>
+            <select class="form-control" id="sortMethod">
+                <option value="shuffle">Shuffle</option>
+                <option value="bubble_sort">Bubble Sort</option>
+                <option value="selection_sort">Selection Sort</option>
+                <option value="quick_sort">Quick Sort</option>
+                <option value="particionamento">Particionamento</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" onclick="ordenarLista()">Ordenar</button>
+        <button class="btn btn-primary" onclick="misturarLista()">Misturar</button>
+
+        <h2 class="mt-4">Lista de Números:</h2>
+        <ul id="numList"></ul>
     </div>
 </body>
 
