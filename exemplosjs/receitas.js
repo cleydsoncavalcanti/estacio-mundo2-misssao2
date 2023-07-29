@@ -1,7 +1,7 @@
 
 
 // Função para criar os elementos HTML das receitas e adicioná-los ao container
-function exibirReceitas() {
+function getListaIngredientes() {
     let receitas = [
         {
             nome: "Bolo de Chocolate",
@@ -17,7 +17,7 @@ function exibirReceitas() {
                 "1 xícara de leite",
             ],
             imagem: "./img/chocolate.jpeg",
-            modoDeFazer:  [
+            modoDeFazer: [
                 "Pré-aqueça o forno a 180°C (350°F). Unte uma forma redonda de bolo com manteiga e farinha ou forre com papel manteiga.",
                 "Em uma tigela grande, peneire a farinha de trigo, o cacau em pó, o fermento em pó e o sal. Reserve.",
                 "Em outra tigela, bata a manteiga amolecida com o açúcar até obter uma mistura cremosa e homogênea.",
@@ -40,7 +40,7 @@ function exibirReceitas() {
                 "1 pitada de sal",
             ],
             imagem: "./img/cenoura.jpeg",
-            modoDeFazer:  [
+            modoDeFazer: [
                 "Pré-aqueça o forno a 180°C (350°F). Unte uma forma retangular ou redonda com manteiga e farinha ou forre com papel manteiga.",
                 "Descasque as cenouras, corte-as em pedaços e coloque-as no liquidificador junto com os ovos e o óleo. Bata até obter uma mistura homogênea.",
                 "Em uma tigela grande, misture a farinha de trigo, o açúcar, o fermento em pó e a pitada de sal.",
@@ -73,31 +73,34 @@ function exibirReceitas() {
             ],
         },
     ];
-    const receitasDiv = document.getElementById("app");
+    const receitasDiv = document.getElementById("pnlCatalogo");
     let html = "";
     receitas.forEach((receita) => {
-        html += `
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="${receita.imagem}" class="card-img-top" alt="${receita.nome}">
-            <div class="card-body">
-              <h5 class="card-title">${receita.nome}</h5>
-              <h6 class="card-subtitle mb-2 text-muted my-2">Ingredientes:</h6>
-              <ul class="list-unstyled">
-                ${receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
-              </ul>
-              <p class="card-text">Modo de fazer:</p>
-              <ol class="">
-                ${receita.modoDeFazer.map(fazer => `<li class="text-justify">${fazer}</li>`).join("")}
-              </ol>
-            </div>
-          </div>
-        </div>`;
+        html += getCard(receita);
     });
     receitasDiv.innerHTML = html;
 }
-
+// Função para criar o card da receita
+function getCard(receita) {
+    return `
+        <div class="mb-4" style="min-width: 400px; max-width: 600px;">
+            <div class="card">
+                <img src="${receita.imagem}" class="card-img-top" alt="${receita.nome}">
+                <div class="card-body">
+                    <h5 class="card-title">${receita.nome}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted my-2">Ingredientes:</h6>
+                    <ul class="list-unstyled">
+                        ${receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
+                    </ul>
+                    <p class="card-text">Modo de fazer:</p>
+                    <ol class="">
+                        ${receita.modoDeFazer.map(fazer => `<li class="text-justify">${fazer}</li>`).join("")}
+                    </ol>
+                </div>
+            </div>
+        </div>`;
+}
 // Chamando a função para exibir as receitas na página
 document.addEventListener('DOMContentLoaded', function () {
-    exibirReceitas();
+    getListaIngredientes();
 });
